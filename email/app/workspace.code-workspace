@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\django-ambassador"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\react-ambassador"
+		}
+	]
+}

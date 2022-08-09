@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  ambassador_backend:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 8003:8000
+    depends_on:
+      - ambassador_db
+      - redis
+    networks:
+      - ambassador
+      - users
+
+  ambassador_db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: ambassador
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - .dbdata:/var/lib/mysql
+    networks:
+      - ambassador
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    networks:
+      - ambassador
+
+networks:
+  ambassador:
+  users:
+    external:
+      name: users
